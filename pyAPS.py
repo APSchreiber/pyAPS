@@ -1,3 +1,0 @@
-# pyAPS
-
-import os
