@@ -1,5 +1,5 @@
 # Installer for pyAPS Library
-# Note - You must have Python oreviously installed on your system
+# Note - You must have Python previously installed on your system
 
 import sys, os
 from shutil import copyfile
@@ -8,10 +8,10 @@ python_exe = sys.executable
 python_dir = sys.exec_prefix
 
 python_lib_dir = python_dir + os.sep + 'Lib'
-python_lib_installed = python_lib_dir + os.sep + 'pyAPS.py'
+python_lib_installed = python_lib_dir + os.sep + 'pyAPS'
 
 source_dir = os.path.dirname(os.path.realpath(__file__))
-source_code = source_dir + os.sep + 'pyAPS.py'
+source_code = source_dir + os.sep + 'pyAPS'
 
 # Check whether install directory is correct
 install_here = raw_input("Install here? " + python_lib_dir + " (y/n): ")
