@@ -34,6 +34,12 @@ install_here = raw_input("Install here? " + python_lib_dir + " (y/n): ")
 
 if install_here.lower() == 'y':
 
+    # Delete old compiled file if eists
+    try:
+        os.remove(python_lib_dir + os.sep + 'pyAPS' + os.sep + 'aps.pyc')
+    except OSError:
+        pass
+
     # Continue with install
     recursive_overwrite(source_code, python_lib_installed)
 

@@ -65,7 +65,21 @@ def batch_define_projection(wkid, workspace):
         if current_sr != sr:
             arcpy.DefineProjection_management(fc, sr)
 
+### PROJECTION, TRANSFORMATION, AND SCALING TOOLS ###
 
+def ground_to_grid(workspace, fc, factor, where_clause='1=1'):
+        arcpy.env.workspace = workspace
+	arcpy.MakeFeatureLayer_management (fc, 'fl', where_clause)
+	with arcpy.da.Editor(workspace) as edit:
+		field_names = ('SHAPE@X', 'SHAPE@Y')
+		cursor = arcpy.da.UpdateCursor('fl', field_names)
+		for row in cursor:
+			row[0] = (row[0] * factor)
+			row[1] = (row[1] * factor)
+			cursor.updateRow(row)
+			del row
+		del cursor
+						
 ### DATA TRANSFER TOOLS ###
 def copy_attributes_spatial(workspace, source_fc, target_fc, source_fields, target_fields):
     arcpy.env.workspace = workspace
